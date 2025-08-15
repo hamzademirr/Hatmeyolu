@@ -12,3 +12,16 @@ createRoot(document.getElementById('root')).render(
     </Provider>
   </StrictMode>,
 )
+
+// Service Worker kaydı
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js')
+      .then(function(registration) {
+        console.log('Service Worker başarıyla kaydedildi:', registration.scope);
+      })
+      .catch(function(error) {
+        console.log('Service Worker kaydı başarısız:', error);
+      });
+  });
+}
