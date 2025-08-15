@@ -1,0 +1,173 @@
+.app {
+  display: flex;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+}
+
+.hamburger-btn {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1001;
+  background: #2d5a2d;
+  border: none;
+  border-radius: 8px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 4px 15px rgba(45, 90, 45, 0.2);
+  transition: all 0.3s ease;
+  opacity: 1;
+  visibility: visible;
+  
+  &:hover {
+    background: #3a6b3a;
+    transform: scale(1.05);
+  }
+  
+  // Sidebar açıkken hamburger menüyü gizle
+  &.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale(0.8);
+  }
+  
+  .hamburger-line {
+    width: 25px;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+    
+    &.active {
+      &:nth-child(1) {
+        transform: rotate(45deg) translateY(7px);
+      }
+      
+      &:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+      
+      &:nth-child(3) {
+        transform: rotate(-45deg) translateY(-7px);
+      }
+    }
+  }
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  cursor: pointer;
+}
+
+.main-content {
+  flex: 1;
+  margin-left: 0; // Varsayılan olarak margin yok
+  padding: 2rem;
+  transition: margin-left 0.3s ease;
+  
+  &--sidebar-open {
+    margin-left: 280px; // Sidebar açıkken margin ver
+  }
+}
+
+.content-container {
+  max-width: 800px;
+  margin: 0 auto;
+  
+  h1 {
+    color: #2d5a2d;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    font-weight: 300;
+    text-shadow: 0 2px 4px rgba(45, 90, 45, 0.1);
+  }
+}
+
+// Responsive tasarım
+@media (max-width: 768px) {
+  .main-content {
+    padding: 5rem 1rem 1rem 1rem; // Top padding for hamburger button
+    
+    &--sidebar-open {
+      margin-left: 0; // Mobile'da sidebar açıkken overlay kullanıyoruz
+    }
+  }
+  
+  .content-container h1 {
+    font-size: 2rem;
+  }
+  
+  .footer {
+    padding: 1.5rem 0 1rem 0;
+    margin-top: 2rem;
+    
+    p {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+// Hamburger menü responsive davranış
+.hamburger-btn {
+  display: flex !important;
+}
+
+// Footer
+.footer {
+  text-align: center;
+  padding: 2rem 0 1rem 0;
+  margin-top: 3rem;
+  
+  p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+    font-weight: 300;
+  }
+  
+  &__link {
+    color: #2d5a2d;
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      color: #3a6b3a;
+      text-shadow: 0 1px 3px rgba(45, 90, 45, 0.2);
+    }
+    
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #2d5a2d, #4caf50);
+      transition: width 0.3s ease;
+    }
+    
+    &:hover:after {
+      width: 100%;
+    }
+  }
+}

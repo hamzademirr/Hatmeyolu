@@ -1,0 +1,216 @@
+$font-family: "Segoe UI", sans-serif;
+$background-gradient: linear-gradient(
+  to bottom right,
+  #7fffd4,
+  #40e0d0
+); // Aquamarine to turquoise
+$text-color: #00332e; // Dark teal for readability
+$primary-color: #20b2aa; // LightSeaGreen (uyumlu)
+$primary-hover: #008b8b; // DarkCyan
+$border-color: #66cdaa; // MediumAquamarine
+$background-dark: #e0fff8; // Very light aquamarine background
+$light-text: #00332e; // Same as $text-color
+$heading-color: #00695c;
+$star-inactive: #a0dcd0;
+$star-active: #20b2aa;
+
+.counter-container {
+  background: white;
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(45, 90, 45, 0.1);
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+  border: 1px solid rgba(45, 90, 45, 0.1);
+}
+
+.counter-header {
+  margin-bottom: 2rem;
+  
+  .counter-title {
+    color: #2d5a2d;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+    line-height: 1.3;
+  }
+  
+  .counter-subtitle {
+    color: #666;
+    font-size: 0.95rem;
+    margin: 0;
+    opacity: 0.8;
+  }
+}
+
+.progress-container {
+  margin-bottom: 2rem;
+  
+  .progress-bar {
+    width: 100%;
+    height: 12px;
+    background-color: #e8f5e8;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4caf50 0%, #66bb6a 100%);
+    border-radius: 10px;
+    transition: width 0.3s ease;
+    box-shadow: 0 2px 4px rgba(76, 175, 80, 0.3);
+  }
+  
+  .progress-text {
+    font-size: 0.9rem;
+    color: #2d5a2d;
+    font-weight: 500;
+  }
+}
+
+.counter-display {
+  margin-bottom: 2rem;
+  
+  .current-count {
+    font-size: 3rem;
+    font-weight: 300;
+    color: #2d5a2d;
+    text-shadow: 0 2px 4px rgba(45, 90, 45, 0.1);
+  }
+  
+  .total-count {
+    font-size: 1.5rem;
+    color: #666;
+    margin-left: 0.5rem;
+  }
+}
+
+.counter-controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  
+  .counter-btn {
+    width: 80px;
+    height: 80px;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+    
+    &:not(:disabled):hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    &:not(:disabled):active {
+      transform: translateY(0);
+    }
+    
+    &--increment {
+      background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
+      color: white;
+      
+      &:not(:disabled):hover {
+        background: linear-gradient(135deg, #45a049 0%, #5cb85c 100%);
+      }
+    }
+    
+    &--decrement {
+      background: linear-gradient(135deg, #ff9800 0%, #ffb74d 100%);
+      color: white;
+      
+      &:not(:disabled):hover {
+        background: linear-gradient(135deg, #f57c00 0%, #ff9800 100%);
+      }
+    }
+  }
+}
+
+.counter-actions {
+  .reset-btn {
+    background: linear-gradient(135deg, #f44336 0%, #ef5350 100%);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(244, 67, 54, 0.2);
+    
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+    
+    &:not(:disabled):hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(244, 67, 54, 0.3);
+      background: linear-gradient(135deg, #d32f2f 0%, #f44336 100%);
+    }
+    
+    &:not(:disabled):active {
+      transform: translateY(0);
+    }
+  }
+}
+
+.completion-message {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
+  color: white;
+  border-radius: 15px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  animation: celebration 0.5s ease-in-out;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+@keyframes celebration {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+// Responsive tasarım
+@media (max-width: 600px) {
+  .counter-container {
+    padding: 1.5rem;
+    margin: 0 1rem;
+  }
+  
+  .counter-display .current-count {
+    font-size: 2.5rem;
+  }
+  
+  .counter-controls .counter-btn {
+    width: 70px;
+    height: 70px;
+    font-size: 1.3rem;
+  }
+}

@@ -1,0 +1,353 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100vh;
+  background: linear-gradient(180deg, #2d5a2d 0%, #3a6b3a 100%);
+  box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+  
+  // Varsayılan olarak kapalı (hem desktop hem mobile)
+  transform: translateX(-100%);
+  
+  &--open {
+    transform: translateX(0);
+  }
+  
+  &__header {
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    h3 {
+      margin: 0;
+      color: white;
+      font-size: 1.3rem;
+      font-weight: 300;
+    }
+  }
+  
+  &__header-buttons {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  
+  &__add-btn {
+    background: #4caf50;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.25rem 0.6rem;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    line-height: 1;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    &:hover {
+      background: #45a049;
+      transform: scale(1.1);
+    }
+  }
+  
+  &__close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    line-height: 1;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+  
+  &__content {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  // Yeni Zikir Ekleme Formu
+  &__add-form {
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  &__input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 0.9rem;
+    
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+    
+    &:focus {
+      outline: none;
+      border-color: #4caf50;
+      background: rgba(255, 255, 255, 0.15);
+    }
+  }
+  
+  &__form-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  &__form-btn {
+    flex: 1;
+    padding: 0.6rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    
+    &--save {
+      background: #4caf50;
+      color: white;
+      
+      &:hover {
+        background: #45a049;
+      }
+    }
+    
+    &--cancel {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      
+      &:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+    }
+  }
+  
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    color: white;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      
+      .sidebar__item-actions {
+        opacity: 1;
+      }
+    }
+    
+    &--active {
+      background-color: rgba(255, 255, 255, 0.15);
+      border-left: 4px solid #90ee90;
+      
+      .sidebar__item-name {
+        color: #90ee90;
+        font-weight: 500;
+      }
+    }
+  }
+  
+  &__item-content {
+    flex: 1;
+    cursor: pointer;
+    min-width: 0;
+  }
+  
+  &__item-name {
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+    line-height: 1.3;
+    word-wrap: break-word;
+  }
+  
+  &__item-total {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 300;
+  }
+  
+  // Zikir İşlem Butonları
+  &__item-actions {
+    display: flex;
+    gap: 0.25rem;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  
+  &__action-btn {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    &--edit {
+      &:hover {
+        color: #4caf50;
+      }
+    }
+    
+    &--delete {
+      &:hover {
+        color: #f44336;
+      }
+    }
+  }
+}
+
+// Footer ve Reset Butonu
+.sidebar__footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: auto;
+}
+
+.sidebar__reset-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background: rgba(244, 67, 54, 0.2);
+  border: 1px solid rgba(244, 67, 54, 0.3);
+  border-radius: 6px;
+  color: #ff6b6b;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: rgba(244, 67, 54, 0.3);
+    border-color: rgba(244, 67, 54, 0.5);
+    color: #ff5252;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(244, 67, 54, 0.2);
+  }
+  
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 4px rgba(244, 67, 54, 0.2);
+  }
+}
+
+// Scrollbar stillendrme
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+// Inline Düzenleme Formu
+.sidebar__add-form {
+  &__edit-form {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+  }
+  
+  &__edit-input {
+    flex: 1;
+    padding: 0.4rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 0.8rem;
+    min-width: 60px;
+    
+    &:focus {
+      outline: none;
+      border-color: #4caf50;
+      background: rgba(255, 255, 255, 0.15);
+    }
+  }
+  
+  &__edit-buttons {
+    display: flex;
+    gap: 0.25rem;
+  }
+  
+  &__edit-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+    
+    &--save {
+      &:hover {
+        background: rgba(76, 175, 80, 0.3);
+        color: #4caf50;
+      }
+    }
+    
+    &--cancel {
+      &:hover {
+        background: rgba(244, 67, 54, 0.3);
+        color: #f44336;
+      }
+    }
+  }
+}
+
+// Scrollbar stillendrme
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}

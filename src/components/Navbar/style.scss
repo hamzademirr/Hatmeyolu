@@ -1,0 +1,28 @@
+nav{
+    background-color: aquamarine;
+    padding: 1rem 0px;
+    display: flex;
+    align-items: center;
+
+    .icon{
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        cursor: pointer;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+        
+        &:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+        
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+
+    h2{
+        color: black;
+    }
+}
